@@ -1,0 +1,99 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 26
+    defaultConfig {
+        applicationId "com.jeebley.task"
+        minSdkVersion 21
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    buildToolsVersion '27.0.3'
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlin {
+        experimental {
+            coroutines 'enable'
+        }
+    }
+
+    flavorDimensions "default"
+
+    productFlavors {
+        production {
+            dimension "default"
+
+            buildConfigField "String", "URL_ENDPOINT", "\"https://jeebleybeta.com/services_new/\""
+            buildConfigField "boolean", "IS_LOG_ENABLED", "true"
+        }//http://34.232.102.163/services/api
+
+        staging {
+            dimension "default"
+
+            buildConfigField "String", "URL_ENDPOINT", "\"https://jeebleybeta.com/services_new/\""
+            buildConfigField "boolean", "IS_LOG_ENABLED", "true"
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "com.android.support:appcompat-v7:$support_version"
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
+    // architecture components
+    implementation "android.arch.lifecycle:runtime:$lifecycle"
+    implementation "android.arch.lifecycle:extensions:$lifecycle"
+    implementation "android.arch.lifecycle:reactivestreams:$lifecycle"
+    implementation "com.android.support:recyclerview-v7:$support_version"
+    kapt "android.arch.lifecycle:compiler:$lifecycle"
+    implementation 'com.google.dagger:dagger:2.15'
+    implementation 'com.google.dagger:dagger-android:2.15'
+    implementation 'com.google.dagger:dagger-android-support:2.15'
+    kapt 'com.google.dagger:dagger-android-processor:2.15'
+    kapt 'com.google.dagger:dagger-compiler:2.15'
+    implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+
+    //Image loading
+    implementation "com.facebook.fresco:fresco:$fresco"
+
+    // Ank library added
+    implementation "org.jetbrains.anko:anko:$anko_version"
+    implementation "org.jetbrains.anko:anko-design:$anko_version"
+
+    // RxJava and RxKotlin library
+    implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
+    implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
+    implementation "io.reactivex.rxjava2:rxkotlin:$rxkotlin_version"
+    implementation "com.jakewharton.rxbinding:rxbinding:$rxbinding_version"
+    implementation "com.jakewharton.rxbinding:rxbinding-kotlin:$rxbinding_version"
+
+    // Retrofit library
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-scalars:$retrofit_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+    implementation 'com.android.support:design:26.1.0'
+
+    implementation 'com.android.support:multidex:1.0.3'
+}

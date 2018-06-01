@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Jeebley Android</string>
+
+    <string name="loading">Loading&#8230;</string>
+    <string name="image_store_detailed">image_store_animation</string>
+    <string name="unknown_error">An unknown error occurred.</string>
+    <string name="menu_detailed"><u>Menu</u></string>
+    <!--transition animation-->
+    <string name="transition_store_detailed">image_store_animation</string>
+    <string name="kd_symbl">%1$s KD</string>
+    <string name="menu_info">Info</string>
+</resources>
